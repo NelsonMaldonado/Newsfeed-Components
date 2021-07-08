@@ -121,7 +121,7 @@ function articleMaker(textGoesHere){
   newDiv.appendChild(pTwo);
   newDiv.appendChild(pThree);
 
-  expandButton.addEventListener('click', (event)=>{
+  expandButton.addEventListener('click', ()=>{
     newDiv.classList.toggle('article-open');
     })
   return newDiv;
@@ -158,4 +158,3 @@ function articleMaker(textGoesHere){
   })
 
 
-  
