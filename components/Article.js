@@ -89,6 +89,43 @@ const data = [
   }
 ];
 
+
+
+function articleMaker(textGoesHere){
+  const newDiv = document.createElement('div')
+  newDiv.classList.add('article');
+  
+  const hTwo = document.createElement('h2')
+  hTwo.textContent =  textGoesHere.title
+
+  const pDate= document.createElement('p')
+  pDate.classList.add('date');
+  pDate.textContent = textGoesHere.date;
+
+  const pOne = document.createElement('p')
+  pOne.textContent = textGoesHere.firstParagraph;
+
+  const pTwo = document.createElement('p')
+  pTwo.textContent =  textGoesHere.secondParagraph;
+
+  const pThree =  document.createElement('p')
+  pThree.textContent = textGoesHere.thirdParagraph;
+
+  const expandButton = document.createElement('span')
+  expandButton.textContent = '+';
+  expandButton.classList.add('expandButton');
+  console.log(expandButton)
+  newDiv.appendChild(hTwo);
+  newDiv.appendChild(pDate);
+  newDiv.appendChild(pOne);
+  newDiv.appendChild(pTwo);
+  newDiv.appendChild(pThree);
+
+  expandButton.addEventListener('click', (event)=>{
+    newDiv.classList.toggle('article-open');
+    })
+  return newDiv;
+}
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
@@ -114,3 +151,11 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+  data.forEach( (item)=>{
+    let article = articleMaker(item);
+    document.querySelector('.article').appendChild(article);
+  })
+
+
+  
