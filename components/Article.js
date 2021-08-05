@@ -89,23 +89,17 @@ const data = [
   }
 ];
 
-function articleMaker ({title,date,pone,ptwo,pthree}){
-
-const divArticle = document.querySelector('.articles');
-console.log(divArticle);
+function articleMaker ({title,date,firstParagraph,secondParagraph,thirdParagraph}){
+//elements
+const divArticle = document.createElement('div');
 const h2Title = document.createElement('h2');
-
 const pdate = document.createElement('p');
-pdate.classList.add('date')
-
 const p1 = document.createElement('p');
 const p2 = document.createElement('p');
 const p3 = document.createElement('p');
 const spanButton = document.createElement('span');
 
-// spanButton.classList.add('expandButton', toggleFunc);
-// spanButton.addEventListener()
-// }
+//append Child
 divArticle.appendChild(h2Title);
 divArticle.appendChild(pdate);
 divArticle.appendChild(p1);
@@ -113,13 +107,39 @@ divArticle.appendChild(p2);
 divArticle.appendChild(p3);
 divArticle.appendChild(spanButton);
 
+//classes
+divArticle.classList.add('article');
+spanButton.classList.add('expandButton');
+pdate.classList.add('date')
+
+//text content
 h2Title.textContent = title;
 pdate.textContent = date;
-p1.textContent = pone;
-p2.textContent = ptwo;
-p3.textContent = pthree;
+p1.textContent = firstParagraph;
+p2.textContent = secondParagraph;
+p3.textContent = thirdParagraph;
+spanButton.textContent = '+';
+
+//event listener
+function toggleFunc(){
+  divArticle.classList.toggle('article-open');
+}
+spanButton.addEventListener('click',toggleFunc);
+
+
 return divArticle;
 }
+
+
+const divFinal = document.querySelector('.articles')
+const articleArray = data.map(item=>{
+  return articleMaker(item);
+});
+
+articleArray.forEach(each=>{
+  divFinal.appendChild(each);
+})
+
 /*Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
   and returns a DOM node looking like the one below:
@@ -144,14 +164,8 @@ return divArticle;
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
-const divElements = data.map(item=>{
-  return articleMaker(item);
-})
-
-console.log(divElements);
 
 
-divElements.forEach(item =>{
-  divArticle.appendChild(item);
-})
+
+  
 
