@@ -89,9 +89,10 @@ const data = [
   }
 ];
 
-function articleMaker ({title,date,firstParagraph}){
-const divArticle = document.createElement('div');
-divArticle.classList.add('article');
+function articleMaker ({title,date,pone,ptwo,pthree}){
+
+const divArticle = document.querySelector('.articles');
+console.log(divArticle);
 const h2Title = document.createElement('h2');
 
 const pdate = document.createElement('p');
@@ -102,9 +103,23 @@ const p2 = document.createElement('p');
 const p3 = document.createElement('p');
 const spanButton = document.createElement('span');
 
-spanButton.addEventListener()
-}
+// spanButton.classList.add('expandButton', toggleFunc);
+// spanButton.addEventListener()
+// }
+divArticle.appendChild(h2Title);
+divArticle.appendChild(pdate);
+divArticle.appendChild(p1);
+divArticle.appendChild(p2);
+divArticle.appendChild(p3);
+divArticle.appendChild(spanButton);
 
+h2Title.textContent = title;
+pdate.textContent = date;
+p1.textContent = pone;
+p2.textContent = ptwo;
+p3.textContent = pthree;
+return divArticle;
+}
 /*Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
   and returns a DOM node looking like the one below:
@@ -129,3 +144,14 @@ spanButton.addEventListener()
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+const divElements = data.map(item=>{
+  return articleMaker(item);
+})
+
+console.log(divElements);
+
+
+divElements.forEach(item =>{
+  divArticle.appendChild(item);
+})
+
